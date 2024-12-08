@@ -25,6 +25,17 @@ ghi`;
       ["g", "h", "i"],
     ]);
   });
+  it("should trim the string", () => {
+    const str = `abc
+                 def
+                 ghi`;
+    const grid = strToGrid(str, (x) => x);
+    expect(grid).toEqual([
+      ["a", "b", "c"],
+      ["d", "e", "f"],
+      ["g", "h", "i"],
+    ]);
+  });
 });
 
 describe("copyGrid", () => {

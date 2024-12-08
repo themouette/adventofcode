@@ -1,10 +1,23 @@
+import { parseAsLines } from "./parse-as-lines";
+
 export type Grid<T = string> = T[][];
 
 export const strToGrid = <T>(
   str: string,
-  transform: (x: string) => T
+  transform: (x: string) => T,
+  {
+    removeEmptyLines = true,
+    trim = true,
+  }: {
+    /** Should the output be sanitized by removing empty lines? */
+    removeEmptyLines?: boolean;
+    /** Should the output be sanitized by trimming each line? */
+    trim?: boolean;
+  } = {}
 ): Grid<T> => {
-  return str.split("\n").map((row) => row.split("").map(transform));
+  return parseAsLines(str, { removeEmptyLines, trim }).map((row) =>
+    row.split("").map(transform)
+  );
 };
 
 export const copyGrid = <T>(grid: Grid<T>): Grid<T> => {
