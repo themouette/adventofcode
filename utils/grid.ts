@@ -1,6 +1,7 @@
 import { parseAsLines } from "./parse-as-lines";
 
 export type Grid<T = string> = T[][];
+export type GridPosition = { x: number; y: number };
 
 export const strToGrid = <T>(
   str: string,
@@ -111,6 +112,13 @@ export const safeSetGridImmutable = <T>(
 
 export const debugGrid = <T>(grid: Grid<T>): void => {
   console.log(grid.map((row) => row.join("")).join("\n"));
+};
+
+export const gridToString = <T>(
+  grid: Grid<T>,
+  transform: (value: T) => string = (x) => `${x}`
+): string => {
+  return grid.map((row) => row.map(transform).join("")).join("\n");
 };
 
 export const findInGrid = <T>(
