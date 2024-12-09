@@ -7,7 +7,7 @@
 To create a new day, run the following command:
 
 ```bash
-mkdir dayXX && cd $_ && cp ../day_template.ts main.ts
+cp ../template -r dayXX
 ```
 
 ### Run a day
